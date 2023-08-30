@@ -26,6 +26,11 @@ async function resolveAllDnsQueries(hostname) {
     }
 }
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 app.get('/lookup/:domain', async (req, res) => {
     try {
         const domain = req.params.domain;
